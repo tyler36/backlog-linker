@@ -1,0 +1,8 @@
+name: 'Backlog Linker'
+description: 'Replace Backlog issue ID with URL to issue'
+inputs:
+  github-token:
+    required: true
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

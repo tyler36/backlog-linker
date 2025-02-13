@@ -45,4 +45,4 @@ jobs:
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
         with:
-          working-directory: './logs/'
+          json-summary-path: 'logs/vitest-report.json'

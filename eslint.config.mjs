@@ -15,6 +15,7 @@ export default [
     rules: {
       // Possible errors
       'no-duplicate-imports': 'error',
+      'no-import-assign': 'off',
       'no-unreachable-loop': 'error',
       'no-unexpected-multiline': 'off',
       // Suggestions

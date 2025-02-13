@@ -31897,7 +31897,7 @@ async function run() {
         }
         // Replace body string with link to Backlog issue.
         const body = payload?.comment?.body;
-        const regex = new RegExp(`(?<!\\[)#${backlogProjectId}-(\\d+)`, 'g');
+        const regex = new RegExp(`(?<!\\[)#${backlogProjectId}-(\\d+)`, 'gi');
         const updatedBody = body.replace(regex, `[#${backlogProjectId}-$1](${backlogUrl}/view/${backlogProjectId}-$1)`);
         if (updatedBody !== body) {
             await octokit.rest.issues.updateComment({
@@ -31912,7 +31912,6 @@ async function run() {
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
     }
 }
-;
 /* v8 ignore next 3 */
 if (!process.env.VITEST_WORKER_ID) {
     run();

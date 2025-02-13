@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import * as core from '@actions/core'
 import * as github from '@actions/github'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { run } from '../src'
 
 vi.mock('@actions/core', () => ({
@@ -54,7 +54,9 @@ describe('Backlog-linker workflow', () => {
 
   it('does NOT run if payload is not "issue_comment"', async () => {
     const setInfoMock = vi.spyOn(core, 'info')
-    github.context = { payload: {} }
+    github.context = {
+      payload: {},
+    }
 
     await run()
 

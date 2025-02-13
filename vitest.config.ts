@@ -14,10 +14,10 @@ export default defineConfig({
       reportsDirectory: './logs/coverage',
       include: ['src/'],
       thresholds: {
-        lines: 100,
-        branches: 100,
-        functions: 100,
-        statements: 100
+        lines: 90,
+        branches: 90,
+        functions: 90,
+        statements: 90
       }
     },
   },

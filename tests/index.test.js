@@ -10,8 +10,7 @@ vi.mock('@actions/core', () => ({
 }))
 
 vi.mock('@actions/github', () => ({
-  context: {
-  },
+  context: {},
   getOctokit: vi.fn(),
 }))
 const mockUpdateComment = vi.hoisted(() => vi.fn())
@@ -19,8 +18,7 @@ const mockUpdateComment = vi.hoisted(() => vi.fn())
 describe('Backlog-linker workflow', () => {
   beforeEach(() => {
     core.getInput.mockImplementation((name) => {
-      const lookup = {
-      }
+      const lookup = {}
 
       return lookup[name] || `FAKE-${name}`
     })
@@ -57,8 +55,7 @@ describe('Backlog-linker workflow', () => {
   it('does NOT run if payload is not "issue_comment"', async () => {
     const setInfoMock = vi.spyOn(core, 'info')
     github.context = {
-      payload: {
-      },
+      payload: {},
     }
 
     await run()

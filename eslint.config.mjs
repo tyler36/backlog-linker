@@ -85,13 +85,7 @@ export default [
       ],
       '@stylistic/ts/lines-between-class-members': ['error', 'always'],
       '@stylistic/ts/indent': ['error', 2],
-      '@stylistic/ts/object-curly-newline': [
-        'error',
-        {
-          ObjectExpression: 'always',
-          ImportDeclaration: 'never',
-        },
-      ],
+      '@stylistic/ts/object-curly-newline': 'off',
       '@stylistic/ts/object-curly-spacing': ['error', 'always'],
       '@stylistic/ts/object-property-newline': 'error',
       '@stylistic/ts/padding-line-between-statements': 'error',

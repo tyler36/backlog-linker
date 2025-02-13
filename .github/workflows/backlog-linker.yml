@@ -5,7 +5,7 @@ on:
 jobs:
   comment-notes:
     runs-on: ubuntu-latest
-    name: "backlog-linker"
+    name: 'backlog-linker'
     permissions:
       contents: write
       issues: write

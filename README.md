@@ -19,7 +19,7 @@ on:
 jobs:
   comment-notes:
     runs-on: ubuntu-latest
-    name: "backlog-linker"
+    name: 'backlog-linker'
     permissions:
       contents: write
       issues: write
@@ -41,10 +41,10 @@ jobs:
 This action requires configuration before usage.
 It is recommended to add these as GitHub secrets to prevent their display in other actions or logs.
 
-| Name                | Required | Description                       |
-| ------------------- | :------: | --------------------------------- |
-| `backlog-url        |    ✅     | URL to Backlog workspace          |
-| `backlog-project-id |    ✅     | Project ID keyword  to search for |
+| Name                | Required | Description                      |
+| ------------------- | :------: | -------------------------------- |
+| `backlog-url        |    ✅    | URL to Backlog workspace         |
+| `backlog-project-id |    ✅    | Project ID keyword to search for |
 
 ### backlog-url
 

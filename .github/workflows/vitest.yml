@@ -8,7 +8,7 @@ on:
     branches: [main]
 
 concurrency:
-  group: ${{ github.head_ref || github.run_id }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -22,27 +22,27 @@ jobs:
       pull-requests: write
 
     steps:
-    - name: '☁️ checkout repository'
-      uses: actions/checkout@v4
-      with:
-        persist-credentials: false
+      - name: '☁️ checkout repository'
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
-    - name: '📦 Install Node'
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
-        cache: 'npm'
+      - name: '📦 Install Node'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
 
-    - name: '📦 Install Dependencies'
-      run: npm ci
+      - name: '📦 Install Dependencies'
+        run: npm ci
 
-    - name: '✅ Run Vitest'
-      run: npx vitest --coverage.enabled true
+      - name: '✅ Run Vitest'
+        run: npx vitest --coverage.enabled true
 
-    - name: '📓 Report Coverage'
-      # Set if: always() to also generate the report if tests are failing
-      # Only works if you set `reportOnFailure: true` in your Vite config as specified above
-      if: always()
-      uses:  davelosert/vitest-coverage-report-action@v2
-      with:
-        working-directory: './logs/'
+      - name: '📓 Report Coverage'
+        # Set if: always() to also generate the report if tests are failing
+        # Only works if you set `reportOnFailure: true` in your Vite config as specified above
+        if: always()
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          working-directory: './logs/'

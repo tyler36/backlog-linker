@@ -45,6 +45,6 @@ jobs:
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
         with:
-          working-directory: './logs/'
-          json-summary-path: 'vitest-report.json'
-          vite-config-path: '../vite.config.ts'
+          working-directory: './'
+          json-summary-path: 'logs/coverage/coverage-summary.json'
+          json-final-path: 'logs/coverage/coverage-final.json'

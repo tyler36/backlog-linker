@@ -43,8 +43,8 @@ It is recommended to add these as GitHub secrets to prevent their display in oth
 
 | Name                | Required | Description                      |
 | ------------------- | :------: | -------------------------------- |
-| `backlog-url        |    ✅    | URL to Backlog workspace         |
-| `backlog-project-id |    ✅    | Project ID keyword to search for |
+| `backlog-url`        |    ✅    | URL to Backlog workspace         |
+| `backlog-project-id` |    ✅    | Project ID keyword to search for |
 
 ### backlog-url
 
@@ -56,8 +56,6 @@ For example:
 - <https://example.backlog.com>
 - <https://example.backlog.jp>
 - <https://my-instance.backlog.com>
-
-The `path` path is automatically appended to the Backlog URL and is not required.
 
 ### backlog-project-id
 

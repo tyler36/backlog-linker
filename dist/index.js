@@ -31883,17 +31883,22 @@ __nccwpck_require__.r(__webpack_exports__);
 async function run() {
     try {
         const token = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('github-token');
+        const backlogUrl = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('backlog-url');
+        const backlogProjectId = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('backlog-project-id');
         const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(token);
         const payload = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload;
         if (payload?.action !== 'created') {
             _actions_core__WEBPACK_IMPORTED_MODULE_0__.info('This action must be triggered by an "issue_comment" event.');
             return;
         }
-        if (!payload.comment || !payload.repository) {
+        if (!payload?.comment || !payload?.repository) {
+            _actions_core__WEBPACK_IMPORTED_MODULE_0__.info('No comment was found.');
             return;
         }
+        // Replace body string with link to Backlog issue.
         const body = payload?.comment?.body;
-        const updatedBody = body.replace(/(?<!\[)#backlog-(\d+)/g, `[#backlog-$1](https://example.com/backlog-$1)`);
+        const regex = new RegExp(`(?<!\\[)#${backlogProjectId}-(\\d+)`, 'g');
+        const updatedBody = body.replace(regex, `[#${backlogProjectId}-$1](${backlogUrl}/view/${backlogProjectId}-$1)`);
         if (updatedBody !== body) {
             await octokit.rest.issues.updateComment({
                 owner: payload.repository.owner.login,

@@ -18,3 +18,5 @@ jobs:
         uses: ./ # Uses an action in the root directory
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          backlog-url: ${{ secrets.BACKLOG_URL }}
+          backlog-project-id: ${{ secrets.BACKLOG_PROJECT_ID }}

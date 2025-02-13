@@ -71,6 +71,15 @@ describe('Backlog-linker workflow', () => {
   } );
 
   it('replaces backlog references with links', async () => {
+    core.getInput.mockImplementation((name) => {
+      const lookup = {
+        'backlog-url': 'https://example.com',
+        'backlog-project-id': 'backlog'
+      }
+
+      return lookup[name] || `FAKE-${name}`
+    })
+
     github.context.payload.comment.body = 'This relates to #backlog-123'
 
     await run();
@@ -79,12 +88,12 @@ describe('Backlog-linker workflow', () => {
       owner: 'test-owner',
       repo: 'test-repo',
       comment_id: 48,
-      body: 'This relates to [#backlog-123](https://example.com/backlog-123)',
+      body: 'This relates to [#backlog-123](https://example.com/view/backlog-123)',
     });
   });
 
   it( 'ignores Backlog IDs already in a markdown link', async () => {
-    github.context.payload.comment.body = 'This relates to [#backlog-123](https://example.com/backlog-123)'
+    github.context.payload.comment.body = 'This relates to [#backlog-123](https://example.com/view/backlog-123)'
 
     await run();
 
@@ -97,6 +106,48 @@ describe('Backlog-linker workflow', () => {
     await run();
 
     expect(mockUpdateComment).toHaveBeenCalledTimes(0);
+  });
+
+  it('uses action input for configuration', async () => {
+    core.getInput.mockImplementation((name) => {
+      const lookup = {
+        'backlog-url': 'https://space.backlog.jp',
+        'backlog-project-id': 'banana'
+      }
+
+      return lookup[name] || `FAKE-${name}`
+    })
+
+    github.context.payload.comment.body = 'The issue #backlog-123 relates to #banana-456'
+
+    await run();
+
+    expect(mockUpdateComment).toHaveBeenCalledWith({
+      owner: 'test-owner',
+      repo: 'test-repo',
+      comment_id: 48,
+      body: 'The issue #backlog-123 relates to [#banana-456](https://space.backlog.jp/view/banana-456)',
+    });
+  });
+
+  it('configuration is case insensitive', async () => {
+    core.getInput.mockImplementation((name) => {
+      const lookup = {
+        'backlog-project-id': 'issue'
+      }
+
+      return lookup[name] || `FAKE-${name}`
+    })
+    github.context.payload.comment.body = 'This relates to #IsSuE-123'
+
+    await run();
+
+    expect(mockUpdateComment).toHaveBeenCalledWith({
+      owner: 'test-owner',
+      repo: 'test-repo',
+      comment_id: 48,
+      body: 'This relates to [#issue-123](FAKE-backlog-url/view/issue-123)',
+    });
   });
 
   it( 'catches any errors', async () => {

@@ -4,6 +4,9 @@ import * as github from '@actions/github';
 export async function run() {
   try {
     const token = core.getInput('github-token');
+    const backlogUrl = core.getInput('backlog-url');
+    const backlogProjectId = core.getInput('backlog-project-id');
+
     const octokit = github.getOctokit(token);
     const payload = github.context.payload;
 
@@ -17,8 +20,10 @@ export async function run() {
       return
     }
 
+    // Replace body string with link to Backlog issue.
     const body = payload?.comment?.body;
-    const updatedBody = body.replace(/(?<!\[)#backlog-(\d+)/g, `[#backlog-$1](https://example.com/backlog-$1)`);
+    const regex = new RegExp(`(?<!\\[)#${backlogProjectId}-(\\d+)`, 'gi')
+    const updatedBody = body.replace(regex, `[#${backlogProjectId}-$1](${backlogUrl}/view/${backlogProjectId}-$1)`);
 
     if (updatedBody !== body) {
       await octokit.rest.issues.updateComment({

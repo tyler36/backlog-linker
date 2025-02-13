@@ -57,8 +57,6 @@ For example:
 - <https://example.backlog.jp>
 - <https://my-instance.backlog.com>
 
-The `path` path is automatically appended to the Backlog URL and is not required.
-
 ### backlog-project-id
 
 This is the project ID used by backlog.

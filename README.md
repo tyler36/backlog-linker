@@ -43,8 +43,8 @@ It is recommended to add these as GitHub secrets to prevent their display in oth
 
 | Name                | Required | Description                      |
 | ------------------- | :------: | -------------------------------- |
-| `backlog-url        |    ✅    | URL to Backlog workspace         |
-| `backlog-project-id |    ✅    | Project ID keyword to search for |
+| `backlog-url`        |    ✅    | URL to Backlog workspace         |
+| `backlog-project-id` |    ✅    | Project ID keyword to search for |
 
 ### backlog-url
 

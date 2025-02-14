@@ -41,8 +41,8 @@ jobs:
 This action requires configuration before usage.
 It is recommended to add these as GitHub secrets to prevent their display in other actions or logs.
 
-| Name                | Required | Description                      |
-| ------------------- | :------: | -------------------------------- |
+| Name                 | Required | Description                      |
+| -------------------- | :------: | -------------------------------- |
 | `backlog-url`        |    ✅    | URL to Backlog workspace         |
 | `backlog-project-id` |    ✅    | Project ID keyword to search for |
 
@@ -63,6 +63,6 @@ This is the project ID used by backlog.
 This action will search for link hints such as `#ISSUE-123` where:
 
 - Backlog Project ID is prefixed with a `#`, suffix with a `-` and followed by numbers.
-- The above is not already surrounded by `[]`
+- The above is not already surrounded by `[]`.
 - Project ID is case insensitive.
 - Multiple IDs may be entered, seperated by `,`.

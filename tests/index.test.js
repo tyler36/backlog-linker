@@ -96,6 +96,29 @@ describe('Backlog-linker workflow', () => {
     })
   })
 
+  it('replaces multiple backlog references with links', async () => {
+    core.getInput.mockImplementation((name) => {
+      const lookup = {
+        'backlog-url': 'https://example.com',
+        'backlog-project-id': 'backlog,network',
+      }
+
+      return lookup[name] || `FAKE-${name}`
+    })
+
+    github.context.payload.comment.body =
+      'This relates to #backlog-123 but addresses #network-123'
+
+    await run()
+
+    expect(mockUpdateComment).toHaveBeenCalledWith({
+      owner: 'test-owner',
+      repo: 'test-repo',
+      comment_id: 48,
+      body: 'This relates to [#backlog-123](https://example.com/view/backlog-123) but addresses [#network-123](https://example.com/view/network-123)',
+    })
+  })
+
   it('ignores Backlog IDs already in a markdown link', async () => {
     github.context.payload.comment.body =
       'This relates to [#backlog-123](https://example.com/view/backlog-123)'

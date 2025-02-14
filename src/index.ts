@@ -22,11 +22,20 @@ export async function run() {
 
     // Replace body string with link to Backlog issue.
     const body = payload?.comment?.body
-    const regex = new RegExp(`(?<!\\[)#${backlogProjectId}-(\\d+)`, 'gi')
-    const updatedBody = body.replace(
-      regex,
-      `[#${backlogProjectId}-$1](${backlogUrl}/view/${backlogProjectId}-$1)`,
-    )
+
+    const projectIds = backlogProjectId
+      .split(',')
+      .map((id) => id.trim())
+      .filter((id) => id.length > 0)
+
+    let updatedBody = body
+    for (const projectId of projectIds) {
+      const regex = new RegExp(`(?<!\\[)#${projectId}-(\\d+)`, 'gi')
+      updatedBody = updatedBody.replace(
+        regex,
+        `[#${projectId}-$1](${backlogUrl}/view/${projectId}-$1)`,
+      )
+    }
 
     if (updatedBody !== body) {
       await octokit.rest.issues.updateComment({

@@ -65,3 +65,4 @@ This action will search for link hints such as `#ISSUE-123` where:
 - Backlog Project ID is prefixed with a `#`, suffix with a `-` and followed by numbers.
 - The above is not already surrounded by `[]`
 - Project ID is case insensitive.
+- Multiple IDs may be entered, seperated by `,`.

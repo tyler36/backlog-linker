@@ -1,6 +1,8 @@
 {
   "scripts": {
     "build": "ncc build src/index.ts",
+    "test": "vitest --run",
+    "test:coverage": "vitest --run --coverage",
     "lint": "npm run prettier:check && npm run eslint:check",
     "lint:fix": "npm run prettier:fix && npm run eslint:fix",
     "eslint:check": "eslint",

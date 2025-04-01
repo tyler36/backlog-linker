@@ -1,5 +1,7 @@
 # Backlog-linker
 
+[![testing](https://github.com/tyler36/backlog-linker/actions/workflows/testing.yml/badge.svg)](https://github.com/tyler36/backlog-linker/actions/workflows/testing.yml)
+
 ## Overview
 
 This GitHub action replaces Backlog issue references with links when posted onto GitHub.

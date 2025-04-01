@@ -2,6 +2,7 @@
 
 [![testing](https://github.com/tyler36/backlog-linker/actions/workflows/testing.yml/badge.svg)](https://github.com/tyler36/backlog-linker/actions/workflows/testing.yml)
 [![linting](https://github.com/tyler36/backlog-linker/actions/workflows/linting.yml/badge.svg)](https://github.com/tyler36/backlog-linker/actions/workflows/linting.yml)
+[![Dependabot Updates](https://github.com/tyler36/backlog-linker/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/tyler36/backlog-linker/actions/workflows/dependabot/dependabot-updates)
 
 ## Overview
 

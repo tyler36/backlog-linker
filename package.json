@@ -11,7 +11,7 @@
     "prettier:fix": "prettier . --write"
   },
   "dependencies": {
-    "@actions/core": "^1.11.1",
+    "@actions/core": "^2.0.1",
     "@actions/github": "^6.0.1",
     "@types/node": "^25.0.3",
     "typescript": "^5.9.3"
